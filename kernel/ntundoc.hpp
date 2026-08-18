@@ -1,0 +1,25 @@
+#pragma once
+
+#include <wdm.h>
+
+extern "C" POBJECT_TYPE* IoDriverObjectType;
+
+typedef struct _OBJECT_NAME_INFORMATION
+{
+	UNICODE_STRING Name;
+} OBJECT_NAME_INFORMATION, *POBJECT_NAME_INFORMATION;
+
+extern "C"
+NTSYSAPI
+NTSTATUS
+NTAPI
+ObReferenceObjectByName(
+	_In_ PUNICODE_STRING ObjectName,
+	_In_ ULONG Attributes,
+	_In_opt_ PACCESS_STATE AccessState,
+	_In_opt_ ACCESS_MASK DesiredAccess,
+	_In_ POBJECT_TYPE ObjectType,
+	_In_ KPROCESSOR_MODE AccessMode,
+	_Inout_opt_ PVOID ParseContext,
+	_Out_ PVOID* Object
+);
